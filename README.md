@@ -2,6 +2,8 @@
 
 Express 3.x `layout`, `partial` and `block` template functions for the EJS template engine. 
 
+Forked to support contentFor('name')
+
 Previously also offered `include` but you should use EJS 0.8.x's own method for that now.
 
 ## Installation
