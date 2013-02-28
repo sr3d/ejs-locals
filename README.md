@@ -126,7 +126,7 @@ When called anywhere inside a template, adds the given html to the named block. 
 Since this relies on javascript strings, and bypasses EJS's default escaping, you should be very careful if you use this function with user-submitted data.
 
 ### `contentFor(name)`
-`block()` would be quite for shorter text, but if you want to define something larger block of code (that can potentially includes other partials), you can use `<%- contentFor('name') -%>` to define the block inside the view, and render the code in the layout with `<%- contentFor.name -%>`.  If you contentFor block's name has a space, use `<%- contentFor["block name"] -%>`.
+`block()` would be convenient for shorter text, but if you want to define a larger block of code (that can potentially includes other partials), you can use `<%- contentFor('name') -%> your html to follow` to define the new contentFor block inside the view.  Then to render the code in the layout, use  `<%- contentFor.name -%>`.  If you contentFor block's name has a space, use `<%- contentFor["block name"] -%>`.  The contentFor block will be end when followed by another `contentFor("name")`, or to the end of the page.
 
 
 ### `script(src,type)`
