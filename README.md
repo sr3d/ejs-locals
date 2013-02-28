@@ -26,6 +26,13 @@ Given a template, `index.ejs`:
     <% block('header', "<p>I'm in the header.</p>") -%>
     <% block('footer', "<p>I'm in the footer.</p>") -%>
 
+    <%- contentFor('contentBlock') -%>
+    <h2>This is the contentBlock</h2>
+
+    <%- contentFor('contentBlock with space') -%>
+    <h2>This is the contentBlock with space</h2>
+
+
 And a layout, `boilerplate.ejs`:
 
     <!DOCTYPE html>
@@ -41,6 +48,10 @@ And a layout, `boilerplate.ejs`:
         </header>
         <section>
           <%-body -%>
+
+          <%- contentFor.contentBlock -%>
+          <%- contentFor["contentBlock with space"] -%>
+
         </section>
         <footer>
           <%-blocks.footer%>
@@ -82,6 +93,10 @@ You get the following result:
         </header>
         <section>
           <h1>I am the best template</h1>
+
+          <h2>This is the contentBlock</h2>
+          <h2>This is the contentBlock with space</h2>
+
         </section>
         <footer>
           <p>I'm in the footer.</p>
@@ -110,6 +125,10 @@ When called anywhere inside a template, adds the given html to the named block. 
 
 Since this relies on javascript strings, and bypasses EJS's default escaping, you should be very careful if you use this function with user-submitted data.
 
+### `contentFor(name)`
+`block()` would be quite for shorter text, but if you want to define something larger block of code (that can potentially includes other partials), you can use `<%- contentFor('name') -%>` to define the block inside the view, and render the code in the layout with `<%- contentFor.name -%>`.  If you contentFor block's name has a space, use `<%- contentFor["block name"] -%>`.
+
+
 ### `script(src,type)`
 
 A convenience function for `block('scripts', '<script src="src.js"></script>')` with optional type. When called anywhere inside a template, adds a script tag with the given src/type to the scripts block. In the layout you can then do `<%-scripts%> to output the scripts from all the child templates.
@@ -117,6 +136,7 @@ A convenience function for `block('scripts', '<script src="src.js"></script>')` 
 ### `stylesheet(href,media)`
 
 A convenience function for `block('stylesheets', '<link rel="stylesheet" href="href.css" />')` with optional media type. When called anywhere inside a template, adds a link tag for the stylesheet with the given href/media to the stylesheets block. In the layout you can then do `<%-stylesheets%> to output the links from all the child templates.
+
 
 
 ## Template Support
