@@ -170,7 +170,6 @@ var renderFile = module.exports = function(file, options, fn){
       renderFile(layout, options, fn);
     } else {
       // no layout, just do the default:
-      logger.debug('final, no layout, just do the default')
       fn(null, html);
     }
   });
